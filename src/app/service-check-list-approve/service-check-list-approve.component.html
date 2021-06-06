@@ -1,0 +1,19 @@
+<form #checkListApprove="ngForm" name="checkListApprove">
+    <h3 mat-dialog-title>{{data.serviceCheckListName}} Check List Approve</h3>
+    <mat-form-field>
+        <mat-label>Check list name</mat-label>
+        <input matInput name="serviceCheckListName" [(ngModel)]="data.serviceCheckListName">
+    </mat-form-field>
+    <mat-dialog-content style="height:200px">
+        <span *ngFor="let data of data.serviceCheckListDetails">
+            <div>
+                <mat-checkbox name="{{data.key}}" [(ngModel)]="data.checked"> {{data.value}}</mat-checkbox>
+            </div>
+        </span>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
+</form>

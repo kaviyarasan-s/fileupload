@@ -1,0 +1,97 @@
+<div class="container">
+    <h3>Signup Form</h3>
+    <form #signupForm="ngForm" (ngSubmit)="submit(signupForm)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Profile name</mat-label>
+                        <input matInput  name="profilename" [(ngModel)]="signup.profileName" required>
+                        <mat-error>Enter profile name</mat-error>
+                        <mat-hint>Username must contains 8 characters</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a DOB</mat-label>
+                        <input matInput [matDatepicker]="picker" name="dob" [(ngModel)]="signup.dob">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput name="email" [(ngModel)]="signup.email" required>
+                        <mat-error>Enter email</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Phone number</mat-label>
+                        <input matInput name="phonenumber" [(ngModel)]="signup.phoneNumber"
+                            maxlength="10" required>
+                        <mat-error>Enter phonenumber</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-label>Pick Roles</mat-label>
+                    <mat-radio-group aria-label="Select an option" name="role" [(ngModel)]="signup.roleId">
+                        <mat-radio-button value="1">Student</mat-radio-button>
+                        <mat-radio-button value="2">staff</mat-radio-button>                
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Group Name</mat-label>
+                        <mat-select name="groupname" [(ngModel)]="signup.groupId" (selectionChange)="saveGroup($event)" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let group of groups" value="{{group.id}}">{{group.name}}</mat-option>
+                        </mat-select>
+                        <mat-error>Select Group</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Qualification</mat-label>
+                        <mat-select name="qualification" [(ngModel)]="signup.qualificationId" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let qualification of qualifications" value="qualification.id">
+                                {{qualification.name}}</mat-option>
+                        </mat-select>
+                        <mat-error>Select Qualification</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <textarea matInput name="comments" [(ngModel)]="signup.comments"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-checkbox name="isagree" #isAgree> Agree with Terms and Conditions</mat-checkbox>
+                    <mat-error *ngIf="!isAgree.checked && signupForm.submitted"> Please Agree then proceed</mat-error>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" mat-raised-button color="primary"
+                        [disabled]="!isAgree.checked && !signupForm.valid">Signup</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

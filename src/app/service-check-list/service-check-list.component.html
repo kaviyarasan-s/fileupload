@@ -1,0 +1,40 @@
+<ng-container>
+    <form #checkListForm="ngForm" name="checkListForm" (ngSubmit)="submit()">
+        <mat-form-field>
+            <mat-label>Check List Name</mat-label>
+            <input matInput name="serviceCheckListName" [(ngModel)]="serviceCheckListName" required>
+            <mat-error>this field is required</mat-error>
+        </mat-form-field>
+        <div>
+            <mat-label>Service Details</mat-label>
+            <div *ngFor="let data of serviceCheckListDetails; let i=index">
+                <mat-form-field>
+                    <input matInput name="{{'data_'+i}}" [(ngModel)]="data.value" required>
+                    <mat-error>this field is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div *ngIf="serviceCheckListDetails.length >= 1">
+            <mat-icon style="cursor: pointer;" (click)="addrow()" aria-hidden="false" aria-label="Add Entry">add
+            </mat-icon>
+        </div>
+        <div *ngIf="serviceCheckListDetails?.length > 1">
+            <mat-icon style="cursor: pointer;" (click)="removerow()" aria-hidden="false" aria-label="Remove Entry">close
+            </mat-icon>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" [disabled]='!checkListForm.valid'>Submit</button>
+        </div>
+    </form>
+</ng-container>
+<div>
+    <ng-container>
+        <button mat-raised-button color="primary" (click)="openDialog()" [disabled]='!isOpenDialog'>Open Dialog</button>
+    </ng-container>
+</div>
+
+<div>
+    {{result | json}}
+</div>

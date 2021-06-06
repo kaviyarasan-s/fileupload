@@ -1,0 +1,37 @@
+<mat-toolbar>
+    <span class="flexExpand">
+        <button mat-icon-button (click)="sideNavOpen.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        My Application
+    </span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>home</mat-icon>
+            <span> Logout </span>
+        </button>
+    </mat-menu>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sideNavOpen [mode]="'side'">
+       <mat-nav-list>
+           <mat-list-item>TEST 1</mat-list-item>
+           <mat-list-item>TEST 2</mat-list-item>
+       </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-grid-list cols="4" rowHeight="98px">
+            <mat-grid-tile [colspan]="4" [rowspan]="5" [style.background]="'lightpink'">
+                one
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<mat-toolbar>
+    <div class="flexExpand"></div>
+    <span>@ Copy right</span>
+</mat-toolbar>

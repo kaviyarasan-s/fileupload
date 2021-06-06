@@ -1,0 +1,31 @@
+<form [formGroup] = "registorForm">
+
+    <label>Name </label>
+    <input type="text" formControlName = "name">
+
+    <label>Choose profile</label>
+    <input type="file" id="file" (change)="fileUpload($event)" formControlName="profileImage">
+
+    <button type="submit" (click)="submit()">Submit</button>
+
+    <div>
+
+        {{5 | power:2 : 2}}
+
+    </div>
+
+    <p appHighlight>
+
+        HightLight Content
+    </p>
+
+
+    <p *appAppunless="!condition">
+        Condition : {{ condition }}  Content showing
+    </p>
+
+    <p *appAppunless="condition">
+        Condition : {{ condition }} Content showing
+    </p>
+
+</form>
